@@ -67,6 +67,18 @@
     <article>
       <header>2026-09-03</header>
       <p>Vandaag is een thuiswerkdag. Ik ga proberen om het visitekaartje af te maken.</p>
+
+      <p>
+        Het is gelukt om a-elementen te gebruiken voor de navigatie. 
+        Ik kon het scrollen vermijden door display: contents; te gebruiken op het
+        target-element. Een andere manier was zorgen dat het target display: absolute; heeft,
+        position: relative; en verder helemaal bovenaan staat met top: 0; 
+      </p>
+
+      <p>
+        Het gebruik van details-elementen is uiteindelijk ook gelukt.
+        De truc was om ze op open te zetten en dan ook gebruik te maken van ::details-content.
+      </p>
     </article>
   </body>
 </html>
