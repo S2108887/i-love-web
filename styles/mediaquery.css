@@ -1,0 +1,9 @@
+body {
+    background: lightyellow;
+}
+
+@media (min-width: 20em) {
+    body {
+        background-color: black;
+    }
+}
