@@ -299,11 +299,47 @@
       <header>2026-09-15</header>
       <p>Vandaag zijn er CSS-opgaven over animaties en transities.</p>
 
-      <p>Er waren eerst opgaven over 2d-transformaties en daarna over 3d-animaties.</p>
+      <p>Er waren eerst opgaven over 2d-transformaties en daarna over 3d-animaties.
+      Het ging over transities. Nog niet over andere manieren om een animatie in te voeren.
+      </p>
 
+      <p>
+      Het ging onder andere over
+      transition-duration, transition-delay, transition-timing-function.
+      Er is een webpagina met timing-functions: <a href="https://open-props.style/#easing">open-props</a>.
+      Er is ook een
+      <a href="https://github.com/argyleink/open-props/blob/main/src/props.easing.css">github-repository</a>
+      Er staan ook andere dingen op de webpagina, maar Sanne gebruikt eigenlijk alleen easings.
+      </p>
 
+      <p>Het is beter om overflow-clip te gebruiken dan overflow-hidden. Je kan beide opgeven
+      voor de x- en y-richting, maar bij overflow-hidden heeft het instellen van de x ook invloed
+      op de y-richting.</p>
 
-      <p>Ik moet nog meer aantekeningen hier plaatsen.</p>
+      <p>Bewegende animaties zijn niet altijd prettig voor mensen, maar een fade van minstens 0,5s is
+      gewoonlijk wel verteerbaar. Je kan met een media-query opvragen of reduced motion gebruikt moet worden.
+      Bijvoorbeeld: @media (prefers-reduced-motion: reduce) { ...etc }.
+      </p>
+
+      <p>
+      Je kan de transform-property opgeven, maar als je alleen wilt draaien, verplaatsen of schalen in
+      de standaardvolgorde, dan kan je beter de properties rotate, translate en scale gebruiken.
+      </p>
+
+      <p>
+      Je kan in de calc-functie tegenwoordig gebruik maken van sibling-count() en sibling-index(). Deze
+      zijn echter pas baseline sinds augustus 2026.
+      </p>
+
+      <p>Qua 3d-transformaties hebben we geleerd over perspective. Wat je daarin opgeeft is
+      een afstand. Ik weet hoe de perspectieftransformatie werkt. Er is een specificatiepagina
+      met informatie over welke formule precies gebruikt wordt.</p>
+
+      <p>Om te zorgen dat de objecten correct voor andere objecten getekend worden bij 3d-transformaties
+      moet je "transform-style: preserve-3d" gebruiken. Dit is wel zwaarder voor computers, dus gebruik
+      het alleen als het nodig is. Ook handig: backface-visibility: hidden.</p>
+
+      <p>Sanne heeft hele knappe animaties laten zien.</p>
 
       <p>Ik heb nog de opmaak kunnen veranderen en een kleine animatie toegevoegd bij de navigatiebalk.
       Ik heb ook fade gebruikt voor wat knoppen. Het is nog niet gelukt om de SVG een transitie te geven.</p>
@@ -328,6 +364,46 @@
       <a href="https://www.youtube.com/watch?v=cIvfekhiYSo">Hier is een video.</a> Het citaat is iets na 1 minuut.
       </p>
 
+    </article>
+    <article>
+      <header>2026-09-17</header>
+
+      <p>
+      Ik heb gewerkt aan het verbeteren van mijn Squad-page.
+      Niet alles is gelukt. Er is bijvoorbeeld maar weinig in de Explore-sectie: alleen
+      de bibliotheek.
+      Wel leuk is dat ik met de instructies van Krijn de svg's een fade-animatie heb
+      kunnen geven.
+      </p>
+    </article>
+
+    <article>
+      <header>2026-09-18</header>
+
+      <p>
+      Vandaag is de expositie. Het is in les gelukt om de readme iets meer af te maken.
+      </p>
+
+      <p>
+      Ik heb ook geleerd dat je in github commits kan verbinden met een bepaald issue. Ik denk dat
+      je dan bepaalde tekst moet opnemen in de commit-tekst, maar ik moet nog uitzoeken hoe dit werkt.
+      </p>
+
+      <p>
+      We moesten een connecting-commits-tekening maken met links de verschillende issues en rechts
+      de commits. Met pijlen moesten wij aangeven welke commit bij welk issue hoort. Veel commits waren
+      echter zonder issue. Als we de commits voortaan verbinden aan issues, dan wordt het veel makkelijker
+      om een dergelijke tekening te maken.
+      </p>
+
+      <p>
+      Ik, Loïs en Rayhana hebben een kampvuursessie gehouden. Gelukkig vonden ze de samenwerking wel
+      prima gaan.
+      </p>
+
+      <p>
+      De expo ging wel goed. Ik liet Dorien mijn pagina zijn en zij vond dat ik het wel goed gedaan had.
+      </p>
     </article>
   </body>
 </html>
