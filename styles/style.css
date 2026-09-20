@@ -1,1 +1,31 @@
+* {
+    box-sizing: border-box;
+}
 
+:root {
+    --body-kleur: grey;
+    --achtergrond-kleur: black;
+    --tekstkleur: white;
+    --accentkleur: #ff6a00;
+}
+
+body {
+    background-color: var(--body-kleur);
+    padding: 1rem;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 100%;
+}
+
+article {
+    background-color: var(--achtergrond-kleur);
+    color: var(--tekstkleur);
+
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+a {
+    color: var(--accentkleur);
+}
