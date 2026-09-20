@@ -18,6 +18,18 @@ body {
     grid-template-columns: 100%;
 }
 
+h1 {
+    background-color: var(--achtergrond-kleur);
+    color: var(--tekstkleur);
+    width: max-content;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+h2 {
+    margin: 0;
+}
+
 article {
     background-color: var(--achtergrond-kleur);
     color: var(--tekstkleur);
