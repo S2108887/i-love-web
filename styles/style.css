@@ -44,7 +44,7 @@ main {
 h1 {
     background-color: var(--achtergrond-kleur);
     color: var(--tekstkleur);
-    width: max-content;
+    width: 100%;
     padding: 1rem;
     border-radius: 1rem;
 }

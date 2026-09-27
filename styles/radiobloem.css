@@ -1,0 +1,89 @@
+@property --bloem-lengte {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+@property --bloem-alpha {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 0%;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+
+    label {
+        transition: --bloem-lengte 0.5s, --bloem-alpha 0.5s;
+        --bloem-lengte: 0;
+        --bloem-alpha: 0%;
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        align-items: start;
+        gap: 0.5rem;
+    }
+
+    label:has(input:checked) {
+        --bloem-lengte: 1;
+        --bloem-alpha: 100%;
+    }
+
+    label>span {
+        grid-column: 1;
+        padding-top: 0.5rem;
+    }
+
+    input {
+        margin: 0;
+        grid-column: 2 / span 1;
+        grid-row: 1;
+
+        transition: translate 0.5s;
+        translate: 0 2.5rem;
+
+        width: 2rem;
+        height: 2rem;
+        appearance: none;
+
+        justify-self: start;
+        align-self: start;
+
+        border-radius: 50%;
+
+        background-image:
+                radial-gradient(at 50% 1rem,
+                white 0 0.5rem,
+                transparent calc(0.5rem + 1px)
+
+                ),
+                repeating-conic-gradient(
+                rgb(255 0 0 / var(--bloem-alpha)) 0 30deg,
+                transparent 31deg 50deg);
+    }
+
+    input:checked {
+        translate: 0;
+    }
+
+    label::before {
+        grid-column: 2/ span 1;
+        grid-row: 1;
+
+        width: 2rem;
+        height: 4rem;
+        content: "";
+        align-self: start;
+        justify-self: start;
+
+        background-image:
+            linear-gradient(0deg,
+                green 0 calc(var(--bloem-lengte) * 2.5rem),
+                transparent calc(var(--bloem-lengte) * 2.5rem + 1px));
+
+        background-size: 0.3rem 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
