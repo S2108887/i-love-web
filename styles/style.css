@@ -2,17 +2,40 @@
     box-sizing: border-box;
 }
 
+/*Een ander letterype wordt ingeladen: Alegreya.*/
+@font-face {
+    font-family: "Alegreya";
+    font-style: normal;
+
+    /*Dit zorgt ervoor dat alle cijfers even hoog en even breed zijn.*/
+    font-feature-settings: "lnum", "tnum";
+    src: url("../assets/fonts/Alegreya-Regular.ttf");
+}
+
+/*De italic-versie van Alegreya*/
+@font-face {
+    font-family: "Alegreya";
+    font-style: italic;
+    src: url("../assets/fonts/Alegreya-Italic.ttf");
+}
+
 :root {
     --body-kleur: grey;
     --achtergrond-kleur: black;
     --tekstkleur: white;
     --accentkleur: #ff6a00;
+
+    font-family: "Alegreya";
 }
 
 body {
     background-color: var(--body-kleur);
     padding: 1rem;
     margin: 0;
+
+}
+
+main {
     display: grid;
     gap: 1rem;
     grid-template-columns: 100%;
