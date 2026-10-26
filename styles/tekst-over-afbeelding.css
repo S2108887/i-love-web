@@ -1,0 +1,57 @@
+html {
+
+    color-scheme: light dark;
+
+
+    --tekstkleur: light-dark(dark, white);
+    --achtergrondkleur: light-dark(white, dark);
+
+    body {
+        background-color: var(--achtergrondkleur);
+        color: var(--tekstkleur);
+        padding: 1rem;
+    }
+
+    h1 {
+        flex-basis: 100%;
+    }
+
+    main {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        justify-content: space-between;
+    }
+
+    article {
+        width: 15rem;
+        height: 30rem;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+
+        div,
+        h2,
+        &::after {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        h2 {
+            z-index: 1;
+            place-self: center;
+            translate: 0 -1rem;
+        }
+
+        div {
+            place-self: stretch;
+            background-image:
+                repeating-conic-gradient(
+                    from 22.5deg,
+                    #fffb8a 0 45deg, 
+                    #7e0085 46deg 90deg);
+        }
+    }
+}
