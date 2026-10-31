@@ -915,7 +915,63 @@
     <article>
       <h2>2026-10-20</h2>
 
-      <p>Vandaag zijn er CSS-uitdagingen over kleuren. TODO: Ik moet mijn aantekeningen nog overzetten.</p>
+      <p>Vandaag zijn er CSS-uitdagingen over kleuren.</p>
+
+      <p>Bij de CSS-functie hsl hoef je niet meer eenheden in te voeren, maar
+      het is aan te raden om dit wel te doen, want je code wordt dan leesbaarder.
+      Voorbeeld: hsl(270deg 100% 50%)</p>
+
+      <p>Met hsl kan je handig donkere en lichte varianten van een kleur verkrijgen
+      door de lightness-waarde te wijzigen. Dit kan ook in andere kleursystemen met een
+      "l" erin.</p>
+
+      <p>De browser kan de hexadecimale kleurnotatie het snelst verwerken.</p>
+
+      <p>Het onderwerp color-gamut werd opnieuw behandeld. Je kan kleuren
+      opgeven die buiten standaard-rgb liggen via de color-functie. Voorbeeld:
+      color(display-p3 1 0 0). Je kan ook alpha opgeven: color(display-p3 1 0 0 / 0.5)</p>
+
+      <p>rec2020 is een nieuwer kleurprofiel dan display-p3, maar er zijn niet veel beeldschermen die dit
+      ondersteunen.</p>
+
+      <p>Het is onhandig om een kleurprofiel te gebruiken dat het beeldscherm niet ondersteunt.
+      De browser trekt dan namelijk in de color-gamut een lijn van de gewenste kleur naar wit.
+      Het eerste punt op deze lijn dat het beeldscherm kan tonen, wordt vervolgens gebruikt.
+      Dit punt is echter niet altijd het dichtstbijzijnde punt dat de monitor zou kunnen tonen.</p>
+
+      <p>Je kan controleren of display-p3 gebruikt kan worden. Je moet twee dingen controleren:
+      dat de browser snapt wat display-p3 betekent en dat het beeldscherm de kleur kan tonen.
+      De eerste controle gaat zo: @supports(color(display-p3 1 0 0)) { ... }. De tweede
+      controle gaat zo: @media(color-gamut: p3) { ... }.</p>
+
+      <p>Met CSS-functie color-mix kan je kleuren mengen. Voorbeeld:
+      color-mix(in oklch, crimson 50%, gold 50%). Je hoeft niet beide percentages op te geven.
+      Bij één percentage zorgt het andere percentage ervoor dat de som 100% wordt. Geef je geen
+      percentages op, dan zijn de percentages 50% en 50%.</p>
+
+      <p>Een veelgebruikte toepassing van color-mix is mengen met transparent. Dit kan ook
+      met de CSS-functie alpha, maar die is pas baseline sinds september 2026.</p>
+
+      <p>Een andere nuttige toepassing is donkerdere of lichtere varianten te maken van een kleur door te
+      mengen met zwart of wit. Dit is ook handig voor het display-p3 kleurprofiel, want daarvoor heb je
+      geen hsl-functie. Voorbeeld: color-mix(in oklch, color(display-p3 1 0 0), black 40%).</p>
+
+      <p>Met de CSS-functie light-dark kan je handig kleuren instellen voor een light-theme en
+      dark-theme.</p>
+
+      <p>Met het picture-element kan je zorgen dat er verschillende afbeeldingen worden gebruikt.
+      Je kan bijvoorbeeld zorgen dat standaard een lage-resolutie-afbeelding wordt gebruikt, maar
+      er een andere afbeelding wordt gebruikt als het scherm breed genoeg is. In het source-element
+      heb je dan een media-attribute. Voorbeeld: media="(width > 32em)".
+      Je kan ook speciale light-theme en dark-theme-afbeeldingen instellen:
+      media="(prefers-color-scheme: dark)". Je kan ook media-features combineren:
+      media="(width > 32em) and (prefers-color-scheme: dark)".
+      </p>
+
+      <p>Met developer tools kan ik kleurenblindheid simuleren. Ik kan ook het contrast van een element
+      opvragen.</p>
+
+      <p>De EAA is een Europese wet over toegankelijkheid: European Accessibility Act.</p>
     </article>
 
     <article>
