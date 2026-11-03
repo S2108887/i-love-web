@@ -25,6 +25,9 @@ html {
 body {
     background-color: hsl(var(--kleurhoek) 100% 15%);
     color: hsl(calc(var(--kleurhoek) - 180deg) 100% 80%);
+
+    margin: 0;
+    padding: 1rem;
 }
 
 p, ul, label, textarea, button {
