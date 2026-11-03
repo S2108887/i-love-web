@@ -1,0 +1,11 @@
+.alineamaker {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.alineas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

@@ -1,5 +1,25 @@
+/*Een ander letterype wordt ingeladen: Alegreya.*/
+@font-face {
+    font-family: "Alegreya";
+    font-style: normal;
+
+    /*Dit zorgt ervoor dat alle cijfers even hoog en even breed zijn.*/
+    font-feature-settings: "lnum", "tnum";
+    src: url("../assets/fonts/Alegreya-Regular.ttf");
+}
+
+/*De italic-versie van Alegreya*/
+@font-face {
+    font-family: "Alegreya";
+    font-style: italic;
+    src: url("../assets/fonts/Alegreya-Italic.ttf");
+}
+
 html {
     --kleurhoek: 240deg;
+    --tekstgrootte-standaard: 1.2rem;
+
+    font-family: "Alegreya";
 }
 
 body {
@@ -7,8 +27,15 @@ body {
     color: hsl(calc(var(--kleurhoek) - 180deg) 100% 80%);
 }
 
-p {
-    max-width: 28em;
+p, ul, label, textarea, button {
     line-height: 1.4;
-    font-size: 1.1rem;
+    font-size: var(--tekstgrootte-standaard);
+}
+
+p, textarea {
+    max-width: 28em;
+}
+
+textarea, button {
+    font-family: "Alegreya";
 }
