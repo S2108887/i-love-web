@@ -1,13 +1,16 @@
 const REGEX_XML = /^<div .*"resultaatcontainer">(.*)<\/div>$/s
 const REGEX_VERVANGLOCATIE = /\{\}/dg
 
+const REGEX_NIEUWE_REGELS_ZIJN_NODIG = /<\/p>/g
+
+const REGEX_WITRUIMTE = /\s+/g
+
 const xmlSerializer = new XMLSerializer()
 
 const formulier = document.querySelector(".alineamaker")
 const knoppen = formulier.querySelector(".knoppen")
 
 const kopieerknop = knoppen.children[2]
-
 
 kopieerknop.addEventListener("click", kopieerActie)
 
@@ -39,7 +42,9 @@ function kopieerActie(event) {
 
     const xml = regexResultaat ? regexResultaat[1] : ""
 
-    navigator.clipboard.writeText(xml)
+    const xmlMetEnters = xml.replaceAll(REGEX_NIEUWE_REGELS_ZIJN_NODIG, plaatsEnters)
+
+    navigator.clipboard.writeText(xmlMetEnters)
 
 }
 
@@ -117,7 +122,11 @@ function maakAlineaInfo(tekst, vervangLocaties) {
 }
 
 function tekstItem(tekst) {
-    return { type: TYPE_TEKST, tekst: tekst }
+    return { type: TYPE_TEKST, tekst: normaliseerWitruimte(tekst) }
+}
+
+function normaliseerWitruimte(tekst) {
+    return tekst.replaceAll(REGEX_WITRUIMTE, " ")
 }
 
 function plaatsAlineasViaInfo(container, alineasInfo) {
@@ -127,7 +136,7 @@ function plaatsAlineasViaInfo(container, alineasInfo) {
 function plaatsAlinea(container, alinea) {
     const p = document.createElement("p")
 
-    for( const item of alinea.items) {
+    for (const item of alinea.items) {
         if (item.type === TYPE_TEKST) {
             p.appendChild(document.createTextNode(item.tekst))
         }
@@ -175,4 +184,8 @@ function maakTekstInvoer(labeltekst) {
 
     return label;
 
+}
+
+function plaatsEnters(tekst) {
+    return "\n" + tekst + "\n"
 }
