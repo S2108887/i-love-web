@@ -1,4 +1,5 @@
 const REGEX_XML = /^<div .*"resultaatcontainer">(.*)<\/div>$/s
+const REGEX_VERVANGLOCATIE = /\{\}/dg
 
 const xmlSerializer = new XMLSerializer()
 
@@ -13,7 +14,8 @@ kopieerknop.addEventListener("click", kopieerActie)
 const nieuweLinkKnop = knoppen.children[0]
 nieuweLinkKnop.addEventListener("click", nieuweLinkActie)
 
-
+const TYPE_TEKST = 0;
+const TYPE_LINK = 1;
 
 function kopieerActie(event) {
     //Schakel de formulier-submit-actie uit.
@@ -24,11 +26,10 @@ function kopieerActie(event) {
     //Maak de container leeg.
     container.textContent = null
 
-    for (const kind of formulier.children) {
-        if (kind.classList.contains("alineas")) {
-            plaatsAlineas(container, kind)
-        }
-    }
+    const alineasInfo = verzamelAlineaInformatie()
+    console.log(JSON.stringify(alineasInfo, null, 4))
+
+    plaatsAlineasViaInfo(container, alineasInfo)
 
     const xmlMetNamespace = xmlSerializer.serializeToString(container)
 
@@ -42,14 +43,104 @@ function kopieerActie(event) {
 
 }
 
-function plaatsAlineas(container, alineas) {
-    const alineaTekst = alineas.querySelector("textarea").value
+function verzamelAlineaInformatie() {
 
-    for (const alinea of alineaTekst.split("\n\n")) {
-        const p = document.createElement("p")
-        p.append(alinea)
-        container.appendChild(p)
+    return Array
+        .from(formulier.querySelectorAll(".alineas"))
+        .map(maakAlineablokInformatie)
+        .flatMap(blok => blok.alineas)
+}
+
+function maakAlineablokInformatie(alineablok) {
+    let vervangLocaties = []
+
+    let alineas = alineablok
+        .querySelector("textarea")
+        .value
+        .split("\n\n")
+        .map(tekst => maakAlineaInfo(tekst, vervangLocaties))
+
+    vulVervanglocaties(alineablok, vervangLocaties)
+
+    return { alineas: alineas }
+}
+
+function vulVervanglocaties(alineablok, vervangLocaties) {
+    let sibling = alineablok.nextElementSibling;
+    let index = 0;
+
+    while (sibling && index < vervangLocaties.length) {
+        if (sibling.classList.contains("linkblok")) {
+            const invoer = Array
+                .from(sibling.querySelectorAll("input"))
+                .map(input => input.value)
+
+            const item = vervangLocaties[index];
+            item.tekst = invoer[0]
+            item.href = invoer[1]
+            item.type = TYPE_LINK;
+        }
+        else {
+            break;
+        }
+
+        index++;
+        sibling = sibling.nextElementSibling;
     }
+}
+
+function maakAlineaInfo(tekst, vervangLocaties) {
+    const items = []
+
+    let positie = 0
+
+    for (const match of tekst.matchAll(REGEX_VERVANGLOCATIE)) {
+        const begin = match.indices[0][0]
+        const eind = match.indices[0][1]
+
+        if (positie < begin) {
+            items.push(tekstItem(tekst.substring(positie, begin)))
+        }
+
+        let vervangLocatie = {}
+        vervangLocaties.push(vervangLocatie)
+        items.push(vervangLocatie)
+
+        positie = eind
+    }
+
+    if (positie < tekst.length) {
+        items.push(tekstItem(tekst.substring(positie)))
+    }
+
+    return { items: items }
+}
+
+function tekstItem(tekst) {
+    return { type: TYPE_TEKST, tekst: tekst }
+}
+
+function plaatsAlineasViaInfo(container, alineasInfo) {
+    alineasInfo.forEach(alinea => plaatsAlinea(container, alinea))
+}
+
+function plaatsAlinea(container, alinea) {
+    const p = document.createElement("p")
+
+    for( const item of alinea.items) {
+        if (item.type === TYPE_TEKST) {
+            p.appendChild(document.createTextNode(item.tekst))
+        }
+        else if (item.type === TYPE_LINK) {
+            const link = document.createElement("a")
+            link.setAttribute("href", item.href)
+            link.append(item.tekst)
+            p.appendChild(link)
+        }
+    }
+
+    container.appendChild(p)
+
 }
 
 function nieuweLinkActie(event) {
@@ -60,8 +151,8 @@ function nieuweLinkActie(event) {
     linkBlok.classList.add("linkblok")
 
     const blokTekst = document.createElement("div")
-    blokTekst.append("Link");
-    linkBlok.appendChild(blokTekst);
+    blokTekst.append("Link")
+    linkBlok.appendChild(blokTekst)
 
     const invoerBlok = document.createElement("div")
     invoerBlok.appendChild(maakTekstInvoer("Tekst"))
