@@ -19,26 +19,44 @@ html {
     --kleurhoek: 240deg;
     --tekstgrootte-standaard: 1.2rem;
 
+    --tekstkleur: light-dark(hsl(var(--kleurhoek) 100% 15%),
+            hsl(calc(var(--kleurhoek) - 180deg) 100% 80%));
+
+    --achtergrondkleur: light-dark(
+            hsl(calc(var(--kleurhoek) - 180deg) 100% 80%),
+            hsl(var(--kleurhoek) 100% 15%));
+
+    @media (prefers-contrast: more) {
+        --tekstkleur: light-dark(black, white);
+        --achtergrondkleur: light-dark(white, black);
+    }
+
     font-family: "Alegreya";
 }
 
 body {
-    background-color: hsl(var(--kleurhoek) 100% 15%);
-    color: hsl(calc(var(--kleurhoek) - 180deg) 100% 80%);
+    background-color: var(--achtergrondkleur);
+    color: var(--tekstkleur);
 
     margin: 0;
     padding: 1rem;
 }
 
-p, ul, label, textarea, button {
+p,
+ul,
+label,
+textarea,
+button {
     line-height: 1.4;
     font-size: var(--tekstgrootte-standaard);
 }
 
-p, textarea {
+p,
+textarea {
     max-width: 28em;
 }
 
-textarea, button {
+textarea,
+button {
     font-family: "Alegreya";
 }
