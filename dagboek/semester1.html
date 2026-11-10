@@ -1216,6 +1216,50 @@
         lettertypes die op veel computers al geïnstalleerd zijn.
       </p>
 
+      <p>Sanne raadt het gebruik van (s)vh in veel gevallen af. De content zou de hoogte van de
+        pagina moeten bepalen. Het is alleen nodig als je een element wilt laten plakken aan de
+        onderkant van de pagina. Het kan ook nuttig zijn voor het instellen van min-width.
+      </p>
+      <p>Als je de google-font-service gebruikt, dan overtreed je de wet. Het geldt ook voor de
+        adobe-font-service. Ze verzamelen gegevens van bezoekers en het is in Europa niet makkelijk
+        om je gegevens te laten verwijderen.
+      </p>
+      <p>Handig voor in je CSS-remedie: button { font-family: inherit; }
+      </p>
+      <p>Via font-family system-ui gebruik je het lettertype van het besturingssysteem.
+      </p>
+
+      <p>Je kan MARK in commentaar opgeven in je CSS. Dit is handig voor navigatie in vscodium.
+      </p>
+      <p>Goed gebruik is het plaatsen van je @font-face-regels aan de bovenkant van je CSS-bestand.
+      </p>
+      <p>Zorg dat je in je @font-face-blokken altijd font-weight en font-style opneemt. Anders zal
+        de browser handmatig de outlines aanpassen om de gewenste style of dikte te bepalen, maar
+        dat is gewoonlijk minder mooi dan via een font.
+      </p>
+      <p>Font-formaten: ttf, otf, woff, woff2. De laatste twee zijn gecomprimeerd.
+      </p>
+      <p>Handig: <a href="https://www.fontsquirrel.com/tools/webfont-generator">woff-generator van
+          font-squirrel</a>.
+      </p>
+
+      <p>In @font-face kan je in src meerdere url's opgeven. De browser gebruikt dan de eerste url
+        die die begrijpt.
+      </p>
+
+
+      <p>Je kan lettertypes preloaden in je html-bestand: &lt;link rel="preload" ... &gt;. Het is
+        prima om alleen de woff2-variant te preloaden.
+      </p>
+
+      <p>Met font-display: fallback; in je @font-face zorg je voor een combinatie van foit (flash of
+        invisible test) en fout (flash of unstyled text).
+      </p>
+      <p>Bij transities kan je verschillende tijden opgeven voor de heen-transitie en de
+        terug-transitie. De terug-transitie geef je op in bijvoorbeeld :hover. Je kan ook
+        verschillende tijden opgeven voor verschillende properties.
+      </p>
+
     </article>
 
   </main>
