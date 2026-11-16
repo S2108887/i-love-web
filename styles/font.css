@@ -1,0 +1,45 @@
+.px {
+
+    p {
+        max-width: 480px;
+    }
+}
+
+.em {
+
+    p {
+        max-width: 30em;
+    }
+}
+
+.grotere-tekst {
+
+    p {
+        font-size: 1.5rem;
+        max-width: 30em;
+    }
+}
+
+.ch {
+
+    p {
+        max-width: 50ch;
+    }
+}
+
+.mm {
+
+    p {
+        max-width: 140mm;
+    }
+}
+
+.cqw {
+    container-type: inline-size;
+    width: 500px;
+
+    p {
+        /*50% van container-breedte*/
+        max-width: 50cqw;
+    }
+}
