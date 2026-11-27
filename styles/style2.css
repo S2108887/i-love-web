@@ -44,6 +44,7 @@ body {
 
 p,
 ul,
+ol,
 label,
 textarea,
 button {
@@ -52,7 +53,7 @@ button {
 }
 
 p,
-textarea {
+textarea, summary {
     max-width: 25em;
 }
 
